@@ -48,7 +48,7 @@ def view_inventory(request):
         return render(request,'aplication/inventory.html',{'products':search_products})
     
     else:
-        products = Product.objects.all()
+        products = Product.objects.filter(user_id=request.user.id)
         paginator = Paginator(products,4)
         page = request.GET.get('page',1)
         products_page = paginator.page(page)
@@ -57,7 +57,18 @@ def view_inventory(request):
 def view_inventory_delete(request,id):
     delete_product = get_object_or_404(Product,pk=id)
     delete_product.delete()
-    return redirect('app:view_inventory')    
+    return redirect('app:view_inventory')  
+
+def view_inventory_edit(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('app:view_inventory')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'forms/inv_edit.html', {'form': form})  
 
 def view_inventory_form(request):
     if request.method == 'POST':
@@ -78,10 +89,17 @@ def view_inventory_form(request):
 #  app customer.
 
 def view_customer(request):
-
-    customers = Customer.objects.all()
-    print("customer")
-    return render(request,'aplication/customer.html',{'customers':customers})
+    if request.method == 'POST':
+        customer = request.POST['customer']
+        search_customer = Customer.objects.filter(name__startswith = customer)
+        return render(request,'aplication/customer.html',{'customers':search_customer})
+        
+    else:
+        customers = Customer.objects.filter(user_id=request.user.id)
+        paginator = Paginator(customers,4)
+        page = request.GET.get('page',1)
+        customer_page = paginator.page(page)
+        return render(request,'aplication/customer.html',{'customers':customer_page})
 
 def view_customer_form(request):
     if request.method == 'POST':
@@ -103,7 +121,23 @@ def view_customer_form(request):
             return redirect('app:view_customer')
     else:
         form = CustomerForm()
-    return render(request,'forms/customer_form.html',{'form':form})   
+    return render(request,'forms/customer_form.html',{'form':form}) 
 
+  
+def view_customer_edit(request, customer_id):
+    customer = get_object_or_404(Customer, pk=customer_id)
+    if request.method == "POST":
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('app:view_customer')
+    else:
+        form = CustomerForm(instance=customer)
+    return render(request, 'forms/customer_edit.html.', {'form': form})
+
+def view_customer_delete(request,id):
+    delete_customer = get_object_or_404(Customer,pk=id)
+    delete_customer.delete()
+    return redirect('app:view_customer')  
 
 

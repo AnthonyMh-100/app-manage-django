@@ -8,9 +8,9 @@
 <!-- Content -->
 <div class="container mx-auto p-6">
     <h2 class="text-2xl font-bold mb-4 text-white">Lista de Clientes</h2>
-    <form method="POST" class="mb-4" action="{% url 'app:view_inventory' %}">
+    <form method="POST" class="mb-4" action="{% url 'app:view_customer' %}">
       {% csrf_token %}
-      <input type="text" name="customer" placeholder="Buscar productos"  class="border-2 border-gray-400 p-2 rounded w-full bg-gray-800 text-white" />
+      <input type="text" name="customer" placeholder="Buscar Cliente"  class="border-2 border-gray-400 p-2 rounded w-full bg-gray-800 text-white" />
     </form>
     <div class="mb-5">
       <a href="{% url 'app:view_customer_form' %}" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded text-white">Agregar Cliente</a>
@@ -37,8 +37,8 @@
           <td class="px-6 py-4 whitespace-nowrap">{{customer.email}}</td>
           <td class="px-6 py-4 whitespace-nowrap">{{customer.phone}}</td>
           <td>
-            <a href="" class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded text-white">borrar</a>
-            <a href="" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 rounded text-white">edit</a>
+            <a href="{% url 'app:view_customer_delete' customer.id %}" class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded text-white">borrar</a>
+            <a href="{% url 'app:view_customer_edit' customer.id %}" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 rounded text-white">edit</a>
           </td>
         </tr>
         {%empty%}
@@ -53,19 +53,19 @@
     <!-- Pagination -->
     <div class="mt-6">
       <div class="flex justify-center space-x-2">
-        {% if products.has_previous %}
-          <a href="?page={{ products.previous_page_number }}&q={{ query }}" class="px-3 py-1 bg-gray-800 text-gray-400 rounded">Anterior</a>
+        {% if customers.has_previous %}
+          <a href="?page={{ customers.previous_page_number }}&q={{ query }}" class="px-3 py-1 bg-gray-800 text-gray-400 rounded">Anterior</a>
         {% endif %}
-        {% for num in products.paginator.page_range %}
-          {% if products.number == num %}
+        {% for num in customers.paginator.page_range %}
+          {% if customers.number == num %}
             <span class="px-3 py-1 bg-gray-600 text-white rounded">{{ num }}</span>
-          {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+          {% elif num > customers.number|add:'-3' and num < customers.number|add:'3' %}
             <a href="?page={{ num }}&q={{ query }}" class="px-3 py-1 bg-gray-800 text-gray-400 rounded">{{ num }}</a>
           {% endif %}
         {% endfor %}
-        {% if products.has_next %}
-          <a href="?page={{ products.next_page_number }}&q={{ query }}" class="px-3 py-1 bg-gray-800 text-gray-400 rounded">Siguiente</a>
-          <a href="?page={{ products.paginator.num_pages }}&q={{ query }}" class="px-3 py-1 bg-gray-800 text-gray-400 rounded">Última</a>
+        {% if customers.has_next %}
+          <a href="?page={{ customers.next_page_number }}&q={{ query }}" class="px-3 py-1 bg-gray-800 text-gray-400 rounded">Siguiente</a>
+          <a href="?page={{ customers.paginator.num_pages }}&q={{ query }}" class="px-3 py-1 bg-gray-800 text-gray-400 rounded">Última</a>
         {% endif %}
       </div>
     </div>

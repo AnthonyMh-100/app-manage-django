@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Producto{% endblock  %}
+
+{% block inv_form %}
+<div class="flex items-center justify-center min-h-screen pt-16 text-white">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-3xl font-bold mb-6 text-center">Editar Producto</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="mt-6">
+                <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded w-full">
+                    Actualizar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
