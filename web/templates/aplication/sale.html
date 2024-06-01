@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Sale{% endblock  %}
+{% block sale %}
+
+<div class="container mx-auto flex flex-col items-center justify-center text-white">
+    <div class="container bg-gray-800 p-8 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-6 text-center">Crear Venta</h2>
+        <form id="venta-form" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <label for="cliente" class="block text-sm font-medium text-gray-300">Nombre del Cliente</label>
+                    <input type="text" id="cliente" name="cliente" class="mt-1 block w-full bg-gray-700 text-white border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300">Email del Cliente</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full bg-gray-700 text-white border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="telefono" class="block text-sm font-medium text-gray-300">Teléfono del Cliente</label>
+                    <input type="tel" id="telefono" name="telefono" class="mt-1 block w-full bg-gray-700 text-white border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+            <div class="text-right">
+                <button type="button" id="add-producto" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">Agregar Producto</button>
+            </div>
+        </form>
+        <div class="mt-6">
+            <h3 class="text-xl font-bold mb-4">Productos</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr>
+                            <th class="py-3 px-6 bg-gray-700 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Producto</th>
+                            <th class="py-3 px-6 bg-gray-700 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Cantidad</th>
+                            <th class="py-3 px-6 bg-gray-700 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productos">
+                        <!-- Productos serán agregados aquí -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-6">
+                <button type="submit" form="venta-form" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500">Guardar Venta</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}
+    

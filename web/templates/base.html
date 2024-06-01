@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Home{% endblock  %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-screen h-screen bg-gray-800">
+      <!-- Navbar -->
+      {% include 'views/navbar.html' %}
+      
+      {% block home %}{% endblock %}
+      {% block sale %}{% endblock %}
+      {% block inventory %}{% endblock %}
+      {% block inv_form %}{% endblock %}
+      {% block customer %}{% endblock %}
+      {% block customer_form %}{% endblock %}
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block home %}
+<div class="w-full">
+    <!-- Main Content -->
+    <main class="w-full flex-grow p-6">
+        <div class="bg-gray-800 text-white p-6 rounded-lg">
+            <h2 class="text-2xl font-bold mb-4 text-white">Tu Dashboard</h2>
+            <p class="text-gray-400 mb-6">Esta es una interfaz inicial con estilo oscuro usando Tailwind CSS, inspirada en Odoo.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-700 p-4 py-8 rounded-lg shadow-lg">
+                    <a href="{% url 'app:view_sale' %}" class="text-xl font-bold mb-2 transform transition-transform duration-300 hover:text-green-500">Ventas</a>
+                    <p class="text-gray-400">Gestiona tus ventas y clientes.</p>
+                </div>
+                
+                <div class="bg-gray-700 p-4 py-8 rounded-lg shadow-lg">
+                    <a href="{% url 'app:view_inventory' %}" class="text-xl font-bold mb-2 hover:text-green-500"">Inventario</a>
+                    <p class="text-gray-400">Gestiona tu inventario y almacenes.</p>
+                </div>
+               
+                <div class="bg-gray-700 p-4 py-8 rounded-lg shadow-lg">
+                    <a href="{% url 'app:view_customer' %}" class="text-xl font-bold mb-2 hover:text-green-500"">Clientes</a>
+                    <p class="text-gray-400">Gestiona tus empleados y recursos humanos.</p>
+                </div>
+               
+            </div>
+        </div>
+    </main>
+</div>
+
+
+{% endblock  %}
+    
