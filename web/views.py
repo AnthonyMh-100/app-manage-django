@@ -80,6 +80,7 @@ def view_inventory_form(request):
 def view_customer(request):
 
     customers = Customer.objects.all()
+    print("customer")
     return render(request,'aplication/customer.html',{'customers':customers})
 
 def view_customer_form(request):
