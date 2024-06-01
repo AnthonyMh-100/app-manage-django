@@ -35,7 +35,7 @@
               <td class="px-6 py-4 whitespace-nowrap">{{product.stock}}</td>
               <td>
                 <a href="{% url 'app:view_inventory_delete' product.id %}" class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded text-white">borrar</a>
-                <a href="" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 rounded text-white">edit</a>
+                <a href="{% url 'app:view_inventory_edit' product.id %}" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 rounded text-white">edit</a>
               </td>
             </tr>
           {%empty%}
